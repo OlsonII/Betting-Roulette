@@ -1,73 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Base;
+using System.Linq;
+using Domain.Repositories;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 
 namespace Domain.Entities
 {
-    public class Roulette : Entity<string>
+    public class Roulette
     {
+        [BsonId]
+        public string Id { get; set; }
         public string State { get; set; }
-        public const double MAX_BET = 10000;
         public List<BetByColor> BetsByColor { get; set; }
         public List<BetByNumber> BetsByNumber { get; set; }
         public List<IBet> WinnerBets { get; set; }
-        public Roulette()
+        public int WinnerNumber { get; set; }
+        public string WinnerColor { get; set; }
+        private const double MaxBet = 10000;
+        [BsonIgnore]
+        public RouletteRepository Repository;
+        public Roulette(RouletteRepository repository)
         {
             BetsByColor = new List<BetByColor>();
             BetsByNumber = new List<BetByNumber>();
             WinnerBets = new List<IBet>();
+            Repository = repository;
+        }
+        public void Open()
+        {
+            if (State == "Cerrada")
+            {
+                State = "Abierta";
+                BetsByColor = new List<BetByColor>();
+                BetsByNumber = new List<BetByNumber>();
+                WinnerBets = new List<IBet>();
+                Repository.Update(roulette: this);
+            }
+            else
+            {
+                State = "Abierta";
+                Repository.Insert(roulette: this);
+            }
         }
         public bool AddBetByColor(BetByColor bet)
         {
-            if (bet.Mount > MAX_BET)
+            if (bet.Amount > MaxBet)
                 return false;
-            
             BetsByColor.Add(bet);
-            
+            Repository.Update(roulette: this);
             return true;
         }
         public bool AddBetByNumber(BetByNumber bet)
         {
-            if (bet.Mount > MAX_BET)
+            if (bet.Amount < 0 || bet.Amount > MaxBet)
                 return false;
             BetsByNumber.Add(bet);
-            
+            Repository.Update(roulette: this);
             return true;
         }
-        public void Close()
+        public List<IBet> Close()
         {
-            int winnerNumber = GenerateWinnerNumber();
-            string winnerColor = IdentifyWinnerColor(winnerNumber);
-            SelectWinnersByColor(winnerColor);
-            SelectWinnersByNumber(winnerNumber);
+            State = "Cerrada";
+            WinnerNumber = GenerateWinnerNumber();
+            WinnerColor = IdentifyWinnerColor(number: WinnerNumber);
+            SelectWinnersByColor(color: WinnerColor);
+            SelectWinnersByNumber(number: WinnerNumber);
+            Repository.Update(roulette: this);
+            return WinnerBets;
         }
         private void SelectWinnersByNumber(int number)
         {
-            
-            foreach (var bet in BetsByNumber)
+            foreach (var bet in BetsByNumber.Where(bet => bet.Number == number))
             {
-                if (bet.Number == number)
-                {
-                    WinnerBets.Add(bet);
-                }
+                bet.CalculateTotalEarn();
+                WinnerBets.Add(bet);
             }
         }
         private void SelectWinnersByColor(string color)
         {
-            
-            foreach (var bet in BetsByColor)
+            foreach (var bet in BetsByColor.Where(bet => bet.Color == color))
             {
-                if (bet.Color == color)
-                {
-                    WinnerBets.Add(bet);
-                }
+                bet.CalculateTotalEarn();
+                WinnerBets.Add(bet);
             }
         }
         private int GenerateWinnerNumber()
         {
             return new Random(Environment.TickCount).Next(0, 36);
         }
-        private string IdentifyWinnerColor(int number)
+        private static string IdentifyWinnerColor(int number)
         {
             return number % 2 == 0 ? "Rojo" : "Negro";
         }

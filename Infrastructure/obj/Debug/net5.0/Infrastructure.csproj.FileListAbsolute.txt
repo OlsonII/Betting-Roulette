@@ -1,0 +1,15 @@
+D:\Proyectos\.NET\Bets\Infrastructure\bin\Debug\net5.0\Infrastructure.deps.json
+D:\Proyectos\.NET\Bets\Infrastructure\bin\Debug\net5.0\Infrastructure.dll
+D:\Proyectos\.NET\Bets\Infrastructure\bin\Debug\net5.0\ref\Infrastructure.dll
+D:\Proyectos\.NET\Bets\Infrastructure\bin\Debug\net5.0\Infrastructure.pdb
+D:\Proyectos\.NET\Bets\Infrastructure\bin\Debug\net5.0\Domain.dll
+D:\Proyectos\.NET\Bets\Infrastructure\bin\Debug\net5.0\Domain.pdb
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.csprojAssemblyReference.cache
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.AssemblyInfoInputs.cache
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.AssemblyInfo.cs
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.csproj.CoreCompileInputs.cache
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.csproj.CopyComplete
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.dll
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\ref\Infrastructure.dll
+D:\Proyectos\.NET\Bets\Infrastructure\obj\Debug\net5.0\Infrastructure.pdb

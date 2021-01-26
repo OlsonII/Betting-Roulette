@@ -1668,6 +1668,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "MongoDB.Bson": "2.11.6",
+          "MongoDB.Driver": "2.11.6",
           "StackExchange.Redis": "2.2.4"
         },
         "compile": {

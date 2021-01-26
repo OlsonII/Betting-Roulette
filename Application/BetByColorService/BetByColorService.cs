@@ -1,0 +1,32 @@
+﻿using Domain.Entities;
+using Domain.Repositories;
+using MongoDB.Driver;
+
+namespace Application.BetByColorService
+{
+    public class BetByColorService
+    {
+        private readonly RouletteRepository _repository;
+        
+        public BetByColorService(IMongoCollection<Roulette> collection)
+        {
+            _repository = new RouletteRepository(collection: collection);
+        }
+        public BetByColorResponse Execute(BetByColorRequest request)
+        {
+            var searchedRoulette = _repository.Find(id: request.RouletteId);
+            if (searchedRoulette == null) 
+                return new BetByColorResponse(message: "Esta ruleta no se encuentra abierta");
+            if (request.Color != "Rojo" && request.Color != "Negro")
+                return new BetByColorResponse(message: "Por favor ingrese un color valido");
+            var bet = new BetByColor {Amount = request.Amount, Color = request.Color};
+            searchedRoulette.Repository = _repository;
+            var betResult = searchedRoulette.AddBetByColor(bet);
+            if(betResult)
+                return new BetByColorResponse(message: "Apuesta a color " + bet.Color + " por valor de $" + bet.Amount +
+                                          " realizada satisfactoriamente");
+
+            return new BetByColorResponse(message: "El valor de la apuesta debe ser un valor valido");
+        }
+    }
+}

@@ -1,0 +1,17 @@
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\Application.deps.json
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\Application.dll
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\ref\Application.dll
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\Application.pdb
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\Domain.dll
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\Infrastructure.dll
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\Domain.pdb
+D:\Proyectos\.NET\Bets\Application\bin\Debug\net5.0\Infrastructure.pdb
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.csprojAssemblyReference.cache
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.AssemblyInfoInputs.cache
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.AssemblyInfo.cs
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.csproj.CoreCompileInputs.cache
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.csproj.CopyComplete
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.dll
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\ref\Application.dll
+D:\Proyectos\.NET\Bets\Application\obj\Debug\net5.0\Application.pdb

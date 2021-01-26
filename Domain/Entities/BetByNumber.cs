@@ -1,15 +1,17 @@
-﻿using Domain.Base;
+﻿using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain.Entities
 {
-    public class BetByNumber : Entity<string>,  IBet
+    public class BetByNumber : IBet
     {
         public int Number { get; set; }
+        [BsonIgnore]
         private const double EarnRate = 5.0;
-        public double Mount { get; set; }
-        public double CalculateTotalEarn()
+        public double Amount { get; set; }
+        public double Earn { get; set; }
+        public void CalculateTotalEarn()
         {
-            return Mount * EarnRate;
+            Earn = Amount * EarnRate;
         }
     }
 }

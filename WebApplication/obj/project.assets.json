@@ -1837,10 +1837,27 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Infrastructure": "1.0.0",
+          "MongoDB.Driver": "2.11.6"
+        },
+        "compile": {
+          "bin/placeholder/Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "MongoDB.Bson": "2.11.6",
+          "MongoDB.Driver": "2.11.6",
           "StackExchange.Redis": "2.2.4"
         },
         "compile": {
@@ -6463,6 +6480,11 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "Application/1.0.0": {
+      "type": "project",
+      "path": "../Application/Application.csproj",
+      "msbuildProject": "../Application/Application.csproj"
+    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
@@ -6476,6 +6498,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Application >= 1.0.0",
       "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.1",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 5.0.1",
@@ -6507,6 +6530,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "D:\\Proyectos\\.NET\\Bets\\Application\\Application.csproj": {
+              "projectPath": "D:\\Proyectos\\.NET\\Bets\\Application\\Application.csproj"
+            },
             "D:\\Proyectos\\.NET\\Bets\\Infrastructure\\Infrastructure.csproj": {
               "projectPath": "D:\\Proyectos\\.NET\\Bets\\Infrastructure\\Infrastructure.csproj"
             }

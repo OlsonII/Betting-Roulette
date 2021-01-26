@@ -3,7 +3,8 @@ namespace Domain.Entities
 {
     public interface IBet
     {
-        double Mount { get; set; }
-        double CalculateTotalEarn();
+        double Amount { get; set; }
+        double Earn { get; set; }
+        void CalculateTotalEarn();
     }
 }
