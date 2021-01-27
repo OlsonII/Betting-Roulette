@@ -14,7 +14,7 @@ namespace Application.BetByNumberService
         public BetByNumberResponse Execute(BetByNumberRequest request, string clientId)
         {
             var searchedRoulette = _repository.Find(id: request.RouletteId);
-            if (searchedRoulette == null) 
+            if (searchedRoulette == null || searchedRoulette.State == "Cerrada") 
                 return new BetByNumberResponse(message: "Esta ruleta no se encuentra abierta");
             if (request.Number < 0 || request.Number > 36)
                 return new BetByNumberResponse(message: "Por favor ingrese un numero valido de 0 a 36");

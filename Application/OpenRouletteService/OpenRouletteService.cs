@@ -17,17 +17,19 @@ namespace Application.OpenRouletteService
         {
             var searchedRoulette = _repository.Find(id: request.RouletteId);
             if (searchedRoulette == null)
+                return new OpenRouletteResponse("Esta ruleta no se encuentra registrada o abierta");
+            switch (searchedRoulette.State)
             {
-                var roulette = new Roulette(repository: _repository) {Id = request.RouletteId};
-                roulette.Open();
-                return new OpenRouletteResponse(message: $"Ruleta {roulette.State}");
+                case "Abierta":
+                    return new OpenRouletteResponse(message: "Esta ruleta ya se encuentra abierta");
+                case "Cerrada":
+                    return new OpenRouletteResponse(
+                        message: $"Ruleta {request.RouletteId} ya se encuentra cerrada. Por favor cree una nueva.");
             }
-            if (searchedRoulette.State != "Cerrada")
-                return new OpenRouletteResponse(message: "Esta ruleta ya se encuentra abierta");
-            searchedRoulette = new Roulette(repository: _repository) {Id = request.RouletteId, State = searchedRoulette.State};
-            searchedRoulette.Open();
-            
-            return new OpenRouletteResponse(message: "Ruleta {searchedRoulette.State}");
+            var roulette = new Roulette(repository: _repository) {Id = request.RouletteId};
+            roulette.Open();
+                
+            return new OpenRouletteResponse(message: $"Ruleta {roulette.State}");
         }
     }
 }

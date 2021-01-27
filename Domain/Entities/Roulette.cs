@@ -29,19 +29,8 @@ namespace Domain.Entities
         }
         public void Open()
         {
-            if (State == "Cerrada")
-            {
-                State = "Abierta";
-                BetsByColor = new List<BetByColor>();
-                BetsByNumber = new List<BetByNumber>();
-                WinnerBets = new List<IBet>();
-                Repository.Update(roulette: this);
-            }
-            else
-            {
-                State = "Abierta";
-                Repository.Insert(roulette: this);
-            }
+            State = "Abierta";
+            Repository.Update(roulette: this);
         }
         public bool AddBetByColor(BetByColor bet)
         {

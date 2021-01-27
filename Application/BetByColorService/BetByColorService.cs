@@ -22,11 +22,9 @@ namespace Application.BetByColorService
             var bet = new BetByColor {Amount = request.Amount, Color = request.Color, ClientIdentification = clientId};
             searchedRoulette.Repository = _repository;
             var betResult = searchedRoulette.AddBetByColor(bet);
-            if(betResult)
-                return new BetByColorResponse(message: "Apuesta a color " + bet.Color + " por valor de $" + bet.Amount +
-                                          " realizada satisfactoriamente");
-
-            return new BetByColorResponse(message: "El valor de la apuesta debe ser un valor valido");
+            
+            return betResult ? new BetByColorResponse(message: $"Apuesta a color {bet.Color} por valor de ${bet.Amount} realizada satisfactoriamente") 
+                : new BetByColorResponse(message: "El valor de la apuesta debe ser un valor valido ($1 a $10.000)");
         }
     }
 }

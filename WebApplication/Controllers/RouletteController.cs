@@ -3,6 +3,7 @@ using Application.OpenRouletteService;
 using Application.BetByColorService;
 using Application.BetByNumberService;
 using Application.CloseRouletteService;
+using Application.CreateRoulette;
 using Application.SearchRoulettesService;
 using Domain.Entities;
 using Infrastructure.Database;
@@ -23,7 +24,13 @@ namespace WebApplication.Controllers
             var database = client.GetDatabase(settings.DatabaseName);
             _rouletteCollection = database.GetCollection<Roulette>(settings.CollectionName);
         }
-        [HttpPost("Open")]
+        [HttpPost]
+        public ActionResult<CreateRouletteResponse> CreateRoulette()
+        {
+            var openRouletteService = new CreateRouletteService(_rouletteCollection);
+            return Ok(openRouletteService.Execute());
+        }
+        [HttpPut("Open")]
         public ActionResult<OpenRouletteResponse> OpenRoulette(OpenRouletteRequest request)
         {
             var openRouletteService = new OpenRouletteService(_rouletteCollection);
