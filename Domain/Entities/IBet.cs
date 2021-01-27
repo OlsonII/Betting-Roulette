@@ -5,6 +5,7 @@ namespace Domain.Entities
     {
         double Amount { get; set; }
         double Earn { get; set; }
+        string ClientIdentification { get; set; }
         void CalculateTotalEarn();
     }
 }

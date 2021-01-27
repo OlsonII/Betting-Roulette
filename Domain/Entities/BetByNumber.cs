@@ -9,6 +9,7 @@ namespace Domain.Entities
         private const double EarnRate = 5.0;
         public double Amount { get; set; }
         public double Earn { get; set; }
+        public string ClientIdentification { get; set; }
         public void CalculateTotalEarn()
         {
             Earn = Amount * EarnRate;

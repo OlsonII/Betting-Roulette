@@ -9,6 +9,7 @@ namespace Domain.Entities
         public string Color { get; set; }
         public double Amount { get; set; }
         public double Earn { get; set; }
+        public string ClientIdentification { get; set; }
         public void CalculateTotalEarn()
         {
             Earn = Amount * EarnRate;
