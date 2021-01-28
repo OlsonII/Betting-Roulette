@@ -13,7 +13,8 @@ namespace Application.SearchRoulettesService
         }
         public SearchRouletteResponse Execute()
         {
-            return new(roulettes: _repository.Find());
+            
+            return new SearchRouletteResponse(roulettes: _repository.Find());
         }
     }
 }

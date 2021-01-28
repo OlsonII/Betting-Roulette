@@ -34,18 +34,22 @@ namespace Domain.Entities
         }
         public bool AddBetByColor(BetByColor bet)
         {
+            
             if (bet.Amount > MaxBet)
                 return false;
             BetsByColor.Add(bet);
             Repository.Update(roulette: this);
+            
             return true;
         }
         public bool AddBetByNumber(BetByNumber bet)
         {
+            
             if (bet.Amount < 0 || bet.Amount > MaxBet)
                 return false;
             BetsByNumber.Add(bet);
             Repository.Update(roulette: this);
+            
             return true;
         }
         public List<IBet> Close()
@@ -56,6 +60,7 @@ namespace Domain.Entities
             SelectWinnersByColor(color: WinnerColor);
             SelectWinnersByNumber(number: WinnerNumber);
             Repository.Update(roulette: this);
+            
             return WinnerBets;
         }
         private void SelectWinnersByNumber(int number)
@@ -76,10 +81,12 @@ namespace Domain.Entities
         }
         private int GenerateWinnerNumber()
         {
+            
             return new Random(Environment.TickCount).Next(0, 36);
         }
         private static string IdentifyWinnerColor(int number)
         {
+            
             return number % 2 == 0 ? "Rojo" : "Negro";
         }
     }

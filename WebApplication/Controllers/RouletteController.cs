@@ -28,18 +28,21 @@ namespace WebApplication.Controllers
         public ActionResult<CreateRouletteResponse> CreateRoulette()
         {
             var openRouletteService = new CreateRouletteService(_rouletteCollection);
+            
             return Ok(openRouletteService.Execute());
         }
         [HttpPut("Open")]
         public ActionResult<OpenRouletteResponse> OpenRoulette(OpenRouletteRequest request)
         {
             var openRouletteService = new OpenRouletteService(_rouletteCollection);
+            
             return Ok(openRouletteService.Execute(request));
         }
         [HttpPut("Close")]
         public ActionResult<CloseRouletteResponse> CloseRoulette(CloseRouletteRequest request)
         {
             var closeRouletteService = new CloseRouletteService(_rouletteCollection);
+            
             return Ok(closeRouletteService.Execute(request));
         }
         [HttpPut("BetByColor")]
@@ -47,6 +50,7 @@ namespace WebApplication.Controllers
         {
             var clientId = requiredHeader;
             var closeRouletteService = new BetByColorService(_rouletteCollection);
+            
             return Ok(closeRouletteService.Execute(request, clientId));
         }
         [HttpPut("BetByNumber")]
@@ -54,12 +58,14 @@ namespace WebApplication.Controllers
         {
             var clientId = requiredHeader;
             var closeRouletteService = new BetByNumberService(_rouletteCollection);
+            
             return Ok(closeRouletteService.Execute(request, clientId));
         }
         [HttpGet]
         public ActionResult<SearchRouletteResponse> SearchRoulettes()
         {
             var searchRouletteService = new SearchRouletteService(_rouletteCollection);
+            
             return Ok(searchRouletteService.Execute());
         }
     }

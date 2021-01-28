@@ -7,7 +7,6 @@ namespace Application.BetByColorService
     public class BetByColorService
     {
         private readonly RouletteRepository _repository;
-        
         public BetByColorService(IMongoCollection<Roulette> collection)
         {
             _repository = new RouletteRepository(collection: collection);
@@ -15,8 +14,10 @@ namespace Application.BetByColorService
         public BetByColorResponse Execute(BetByColorRequest request, string clientId)
         {
             var searchedRoulette = _repository.Find(id: request.RouletteId);
+            
             if (searchedRoulette == null) 
                 return new BetByColorResponse(message: "Esta ruleta no se encuentra abierta");
+            
             if (request.Color != "Rojo" && request.Color != "Negro")
                 return new BetByColorResponse(message: "Por favor ingrese un color valido");
             var bet = new BetByColor {Amount = request.Amount, Color = request.Color, ClientIdentification = clientId};

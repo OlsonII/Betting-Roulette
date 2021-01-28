@@ -21,8 +21,10 @@ namespace Application.OpenRouletteService
             switch (searchedRoulette.State)
             {
                 case "Abierta":
+                    
                     return new OpenRouletteResponse(message: "Esta ruleta ya se encuentra abierta");
                 case "Cerrada":
+                    
                     return new OpenRouletteResponse(
                         message: $"Ruleta {request.RouletteId} ya se encuentra cerrada. Por favor cree una nueva.");
             }

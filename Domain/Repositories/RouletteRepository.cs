@@ -21,11 +21,13 @@ namespace Domain.Repositories
         }
         public Roulette Find(string id)
         {
+            
             return Collection.Find(r => r.Id == id)
                 .FirstOrDefault();
         }
         public List<Roulette> Find()
         {
+            
             return Collection.Find(r => true).ToList();
         }
     }
